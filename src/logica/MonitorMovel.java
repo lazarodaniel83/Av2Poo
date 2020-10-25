@@ -6,43 +6,41 @@ import exception.MonitorMovelException;
 import java.util.List;
 
 public abstract class MonitorMovel {
+	
+		public static final String cameraVideo = "cftv";
+		public static final String temperatura = "temp";
+		public static final String sensorCarbono = "Co2";
+		public static final String sensorMetano = "ch4";
 
-		private Sensores  sensores;
-		private Ponto inicial;
-		private Ponto atual;
-		private int id;
+		protected Sensores sensores;
+		protected Ponto inicial;
+		protected Ponto atual;
 		
-		public MonitorMovel(Ponto inicial,Sensores sensores,int id){
+		public MonitorMovel(Ponto inicial,Sensores sensores){
 			this.setInicial(inicial);
-			this.setSensores(sensores);
-			this.setId(id);
+			this.sensores = sensores;
+			
 		}
 		public MonitorMovel(Sensores sensores){
-			this.setSensores(sensores);
+			this.sensores =sensores;
 		}
 		public MonitorMovel(Ponto atual){
 			this.setAtual(atual);
 		}
 		
-		public void setSensores(Sensores sensores){
-			this.sensores = sensores;
-		}
+		
 		public void setInicial(Ponto inicial){
 			this.inicial = inicial;
 		}
 		public void setAtual(Ponto atual){
 			this.atual = atual;
-		}
-		public void setId(int id){
-			this.id = id;
-		}
-		
+		}		
 	
+		@Override
+		public String toString(){
+			return "MonitorMovel[Posições Atuais : "+atual.getOrdenada()+atual.getAbscissa()+
+					"Sensores: "+sensores.getSensores()+"]";
+		}
 		
-		
-		
-		
-		
-		
-		
+		public abstract Ponto getCalcularTrajeto(Ponto outro);
 }
