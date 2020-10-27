@@ -7,11 +7,14 @@ import logica.dto.MonitorDTO;
 public interface MonitorDAO{
 
 	public void salvar(MonitorMovel monitor) throws Exception;
-	public List<MonitorMovel>  monitores() throws Exception;
-	public MonitorMovel busc(String Udidade_id) throws Exception;
 	public void atualizar(MonitorMovel monitor) throws Exception;
+	public void delete(String idMonitor) throws Exception;
+
+	public List<MonitorMovel>  bcsTdsMonitores() throws Exception;
+	
+	public MonitorMovel busca(String id) throws Exception;
+
 	public void salveOuAtualiza(MonitorMovel monitor) throws Exception;
-	public void delete(int idMonitor) throws Exception;
 	
 }
 

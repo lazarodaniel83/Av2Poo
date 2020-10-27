@@ -1,16 +1,8 @@
 package logica;
 
 public enum Sensores {
-	cameraVideo("cftv"),temperatura("temp"),
-    sensorCarbono("Co2"), sensorMetano("ch4");
+	cameraVideo,temperatura,
+    sensorCarbono, sensorMetano;
 
-    private String sensores;
     
-    Sensores(String sensores){
-        this.sensores = sensores;
-    }
-
-    public String getSensores(){
-        return sensores;
-    }
 }
