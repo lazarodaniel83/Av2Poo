@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.ArrayList;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -8,7 +9,6 @@ import persistencia.MonitorSQL;
 import persistencia.MonitorDAO;
 import exception.MonitorMovelException;
 import logica.dto.MonitorDTO;
-import logica.MonitorConfig;
 
 public class Monitorar implements MonitoraAreaLogica{
 	
@@ -26,7 +26,7 @@ public class Monitorar implements MonitoraAreaLogica{
 	}
 	
 	public void delete(String idMonitor){
-		monitorDAO.delete(idMonitor);
+		monitorSQL.delete(idMonitor);
 	}
 	
 	public String monitoria(double abscissa,double ordenada,boolean cameraVideo,boolean temperatura,boolean sensorCarbono,boolean sensorMetano) throws Exception{
@@ -66,7 +66,7 @@ public class Monitorar implements MonitoraAreaLogica{
 	}
 	public List<MonitorDTO> getMonitores() throws Exception{
 		this.monitorSQL = new MonitorSQL();
-		this.monitoresDTO = this.monitorSQL.bcsTdsMonitoresUi();
+		this.monitoresDTO = this.monitorSQL.buscarTdUi();
 		return this.monitoresDTO;
 	}
 

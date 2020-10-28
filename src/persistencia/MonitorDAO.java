@@ -16,6 +16,7 @@ public interface MonitorDAO{
 
 	public void salveOuAtualiza(MonitorMovel monitor) throws Exception;
 	
+	public List<MonitorDTO> buscarTdUi() throws Exception;
 }
 
 

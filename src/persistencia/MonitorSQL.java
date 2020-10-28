@@ -169,11 +169,27 @@ public class MonitorSQL implements MonitorDAO{
 		return monitor;
 	}
     
-    public List<MonitorDTO> buscarUi() throws Exception{
+    public List<MonitorDTO> buscarTdUi() throws Exception{
     	List<MonitorDTO> monitores = new ArrayList<>();
     	MonitorDTO monitor = null;
     	PreparedStatement ps = this.getConnection().prepareStatement(MonitorSQL.RECOVERY_ALL);
     	ResultSet rSet = ps.executeQuery();
+    	
+    	while(rSet.next()){
+    		int tipo = rSet.getInt("TipoDoMonitor");
+    		if(tipo == MonitorSQL.MONITOR_EUCLIDIANA)
+    			monitor = new MonitorDTO(rSet.getString("ID"),
+    									 rSet.getDouble("ABSCISSA"),rSet.getDouble("ORDENADA"),
+    									 rSet.getBoolean("MONITORCARBONO"),rSet.getBoolean("MONITORMETANO"),
+    									 rSet.getBoolean("CAMERAVIDEO"),rSet.getInt("TIPOMONITOR"));
+    		else if(tipo == MonitorSQL.MONITOR_MANHATTAN)
+    			monitor = new MonitorDTO(rSet.getString("ID"),
+										 rSet.getDouble("ABSCISSA"),rSet.getDouble("ORDENADA"),
+										 rSet.getBoolean("MONITORCARBONO"),rSet.getBoolean("MONITORMETANO"),
+										 rSet.getBoolean("CAMERAVIDEO"),rSet.getInt("TIPOMONITOR"));
+    		monitores.add(monitor);
+    	}
+    	return monitores;
     }
     
     
